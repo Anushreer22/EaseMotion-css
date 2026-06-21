@@ -1,1 +1,36 @@
-﻿/* All styling handled by EaseMotion CSS classes */
+﻿/* Custom refinements for the EduLift landing page demo */
+
+/* Make placeholder images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Smooth scroll for anchor links (if any) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Subtle card entrance polish */
+.ease-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ensure newsletter input matches button height */
+.ease-input {
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+/* Optional: custom focus ring for better a11y */
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
+
+/* Very mild footer text treatment */
+footer {
+  letter-spacing: 0.025em;
+}
