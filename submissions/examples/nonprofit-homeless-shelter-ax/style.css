@@ -1,4 +1,39 @@
-﻿/* Additional minimal styling – all main styling uses EaseMotion classes */
+﻿/* Custom styling for Haven House landing page */
+
+/* Smooth font rendering */
 body {
   font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure images scale correctly */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Add a subtle border to input on focus for better a11y */
+.ease-input:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: -1px;
+}
+
+/* Mild hover effect for nav links */
+nav a.ease-hover-text-blue-700:hover {
+  text-decoration: underline;
+}
+
+/* Count-up stat number slightly bolder */
+#housed-count {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Responsive tweak for small screens */
+@media (max-width: 640px) {
+  .ease-btn-lg {
+    width: 100%;
+    text-align: center;
+  }
 }
