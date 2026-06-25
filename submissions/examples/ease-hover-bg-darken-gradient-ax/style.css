@@ -1,0 +1,48 @@
+﻿/* ============================================================
+   ease-hover-bg-darken-gradient – Dark gradient overlay on hover
+   ============================================================ */
+
+.darken-card {
+  position: relative;
+}
+
+.darken-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The overlay – invisible by default */
+.darken-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+/* On hover, fade the overlay in */
+.darken-card:hover::after {
+  opacity: 1;
+}
+
+/* Custom opacity override */
+.darken-card {
+  --ease-overlay-opacity: 1;
+}
+
+.darken-card:hover::after {
+  opacity: var(--ease-overlay-opacity);
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .darken-card::after {
+    transition: none;
+  }
+}
