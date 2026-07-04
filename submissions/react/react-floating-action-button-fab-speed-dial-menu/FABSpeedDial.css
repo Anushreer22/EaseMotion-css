@@ -1,0 +1,180 @@
+﻿/* ============================================================
+   EaseMotion CSS — FAB Speed Dial Menu
+   Issue #27398
+   ============================================================ */
+
+/* Container */
+.em-fab-container {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* Position variants */
+.em-fab--bottom-right { bottom: 24px; right: 24px; flex-direction: column-reverse; align-items: flex-end; }
+.em-fab--bottom-left  { bottom: 24px; left: 24px;  flex-direction: column-reverse; align-items: flex-start; }
+.em-fab--top-right    { top: 24px;    right: 24px; flex-direction: column;         align-items: flex-end; }
+.em-fab--top-left     { top: 24px;    left: 24px;  flex-direction: column;         align-items: flex-start; }
+
+/* Direction: left/right override */
+.em-fab--left  { flex-direction: row-reverse; align-items: center; }
+.em-fab--right { flex-direction: row;         align-items: center; }
+
+/* Main FAB button */
+.em-fab-main {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: #6c63ff;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.45);
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.em-fab-main:hover {
+  background: #574fd6;
+  box-shadow: 0 6px 24px rgba(108, 99, 255, 0.55);
+  transform: scale(1.08);
+}
+
+.em-fab-main:focus-visible {
+  outline: 3px solid #a89cff;
+  outline-offset: 3px;
+}
+
+/* Icon rotation animation */
+.em-fab-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+}
+
+.em-fab-icon--open  { transform: rotate(0deg);   opacity: 1; }
+.em-fab-icon--close { transform: rotate(135deg);  opacity: 1; }
+
+/* Actions list */
+.em-fab-actions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.em-fab--left  .em-fab-actions,
+.em-fab--right .em-fab-actions {
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Action item — staggered entrance animation */
+.em-fab-action-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(16px) scale(0.85);
+  transition:
+    opacity 0.25s ease calc(var(--em-fab-index) * 40ms),
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--em-fab-index) * 40ms),
+    pointer-events 0s;
+  pointer-events: none;
+}
+
+.em-fab--left  .em-fab-action-item,
+.em-fab--right .em-fab-action-item {
+  transform: translateX(16px) scale(0.85);
+}
+
+/* Open state */
+.em-fab--open .em-fab-actions {
+  pointer-events: auto;
+}
+
+.em-fab--open .em-fab-action-item {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.em-fab--open.em-fab--left  .em-fab-action-item,
+.em-fab--open.em-fab--right .em-fab-action-item {
+  transform: translateX(0) scale(1);
+}
+
+/* Action button */
+.em-fab-action-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: #fff;
+  color: #6c63ff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  flex-shrink: 0;
+}
+
+.em-fab-action-btn:hover {
+  background: #f0eeff;
+  transform: scale(1.12);
+  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.25);
+}
+
+.em-fab-action-btn:focus-visible {
+  outline: 3px solid #a89cff;
+  outline-offset: 3px;
+}
+
+/* Action label tooltip */
+.em-fab-action-label {
+  background: rgba(30, 30, 40, 0.85);
+  color: #fff;
+  font-size: 13px;
+  font-family: inherit;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  backdrop-filter: blur(4px);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .em-fab-main,
+  .em-fab-icon,
+  .em-fab-action-item,
+  .em-fab-action-btn {
+    transition: none !important;
+    animation: none !important;
+  }
+}
